@@ -24,7 +24,7 @@ export default function ShowBooks() {
 
   return (
     <div className="text-center my-4">
-      <Link href="/book/new" passHref>
+      <Link href="/author/new" passHref>
         <Button>Add An Author</Button>
       </Link>
       <div className="d-flex flex-wrap">
