@@ -2,7 +2,6 @@
 import { useAuth } from '../utils/context/authContext';
 
 export default function Home() {
-  // TODO: Get user ID using useAuth Hook
   const { user } = useAuth();
 
   return (
