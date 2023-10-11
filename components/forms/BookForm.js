@@ -45,7 +45,7 @@ function BookForm({ obj }) {
       createBook(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateBook(patchPayload).then(() => {
-          router.push('/');
+          router.push('/books');
         });
       });
     }
