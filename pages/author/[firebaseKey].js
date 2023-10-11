@@ -30,31 +30,36 @@ export default function ViewAuthor() {
   console.warn(authorDetails);
 
   return (
-    <div className="mt-5 d-flex flex-wrap">
-      <div className="d-flex flex-column">
-        <img src={authorDetails.image} alt={authorDetails.last_name} style={{ width: '200px', height: '200px', border: '1px solid white' }} />
-      </div>
-      <div className="text-white ms-5 details">
-        <h5>
-          {authorDetails.first_name} {authorDetails.last_name}
-          {authorDetails.favorite ? ' 🤍' : ''}
-        </h5>
-        Author Email: <a href={`mailto:${authorDetails.email}`}>{authorDetails.email}</a>
-        <p>{authorDetails.description || ''}</p>
+    <>
+      <div className="mt-5 d-flex flex-wrap">
+        <div className="d-flex flex-column">
+          <img src={authorDetails.image} alt={authorDetails.last_name} style={{ width: '200px', height: '200px', border: '1px solid white' }} />
+        </div>
+        <div className="text-white ms-5 details">
+          <h5>
+            {authorDetails.first_name} {authorDetails.last_name}
+            {authorDetails.favorite ? ' 🤍' : ''}
+          </h5>
+          Author Email: <a href={`mailto:${authorDetails.email}`}>{authorDetails.email}</a>
+          <p>{authorDetails.description || ''}</p>
+          <hr />
+          <Link href={`/author/edit/${authorDetails.firebaseKey}`} passHref>
+            <Button variant="info">EDIT</Button>
+          </Link>
+          <Button variant="danger" onClick={deleteThisAuthor} className="m-2">
+            DELETE
+          </Button>
+        </div>
         <hr />
-        <Link href={`/author/edit/${authorDetails.firebaseKey}`} passHref>
-          <Button variant="info">EDIT</Button>
-        </Link>
-        <Button variant="danger" onClick={deleteThisAuthor} className="m-2">
-          DELETE
-        </Button>
       </div>
-      <hr />
-      <div id="author-details-book" className="d-flex flex-column">
-        {authorDetails.books?.map((book) => (
-          <BookCard key={book.firebaseKey} bookObj={book} onUpdate={getADetails} />
-        ))}
+      <div className="mt-5 d-flex flex-wrap">
+        <div id="author-details-book" className="d-flex flex-row">
+          {authorDetails.books?.map((book) => (
+            <BookCard key={book.firebaseKey} bookObj={book} onUpdate={getADetails} />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
+
   );
 }
