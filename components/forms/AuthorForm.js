@@ -5,7 +5,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
-import { createAuthor, getAuthors, updateAuthor } from '../../api/authorData';
+import { createAuthor, updateAuthor } from '../../api/authorData';
 
 const initialState = {
   first_name: '',
@@ -21,8 +21,6 @@ function AuthorForm({ obj }) {
   const { user } = useAuth();
 
   useEffect(() => {
-    getAuthors(user.uid).then();
-
     if (obj.firebaseKey) setFormInput(obj);
   }, [obj, user]);
 
