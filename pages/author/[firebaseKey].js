@@ -5,8 +5,8 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
-import { deleteAuthorBooks, viewAuthorDetails } from '../../api/mergedData';
 import BookCard from '../../components/BookCard';
+import { deleteAuthorBooks, getAuthorDetails } from '../../api/mergedData';
 
 export default function ViewAuthor() {
   const [authorDetails, setAuthorDetails] = useState({});
@@ -14,7 +14,7 @@ export default function ViewAuthor() {
   const { firebaseKey } = router.query;
 
   const getADetails = () => {
-    viewAuthorDetails(firebaseKey).then(setAuthorDetails);
+    getAuthorDetails(firebaseKey).then(setAuthorDetails);
   };
 
   const deleteThisAuthor = () => {
@@ -26,8 +26,6 @@ export default function ViewAuthor() {
   useEffect(() => {
     getADetails();
   }, []);
-
-  console.warn(authorDetails);
 
   return (
     <>
